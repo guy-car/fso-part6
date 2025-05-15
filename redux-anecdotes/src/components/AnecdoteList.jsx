@@ -1,20 +1,34 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { handleVote } from '../reducers/anecdoteReducer'
+import { setTemporaryNotification } from '../reducers/notificationReducer'
 
-const AnecodteList = () => {
+const AnecdoteList = () => {
 
     const dispatch = useDispatch()
-    const anecdotes = useSelector(state => state)
 
+    const filteredAnecdotes = useSelector(({ filter, anecdotes }) => 
+        anecdotes.filter(anecdote => 
+          anecdote.content.toLowerCase().includes(filter.toLowerCase())
+        )
+      )
+
+    const sortedAnecdotes = [...filteredAnecdotes].sort((a, b) => b.votes - a.votes)
+
+    const vote = (anecdote) => {
+        dispatch(handleVote(anecdote.id))
+        dispatch(setTemporaryNotification(`You voted for "${anecdote.content}"`, 5))
+    }
+      
+      
     const listEl =
-    anecdotes.map(anecdote =>
+    sortedAnecdotes.map(anecdote =>
     <div key={anecdote.id}>
       <div>
         {anecdote.content}
       </div>
       <div>
         has {anecdote.votes}
-        <button onClick={() => dispatch(handleVote(anecdote.id))}>vote</button>
+        <button onClick={() => vote(anecdote)}>vote</button>
       </div>
     </div>
   )
@@ -26,4 +40,4 @@ const AnecodteList = () => {
     )
 }
 
-export default AnecodteList
+export default AnecdoteList
