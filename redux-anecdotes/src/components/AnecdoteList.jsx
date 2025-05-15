@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { handleVote } from '../reducers/anecdoteReducer'
+import { voteForAnecdote } from '../reducers/anecdoteReducer'
 import { setTemporaryNotification } from '../reducers/notificationReducer'
 
 const AnecdoteList = () => {
@@ -15,7 +15,7 @@ const AnecdoteList = () => {
     const sortedAnecdotes = [...filteredAnecdotes].sort((a, b) => b.votes - a.votes)
 
     const vote = (anecdote) => {
-        dispatch(handleVote(anecdote.id))
+        dispatch(voteForAnecdote(anecdote.id))
         dispatch(setTemporaryNotification(`You voted for "${anecdote.content}"`, 5))
     }
       
