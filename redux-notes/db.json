@@ -7,18 +7,28 @@
     },
     {
       "content": "state changes are made with actions",
-      "important": false,
+      "important": true,
       "id": "2"
     },
     {
       "id": "9909",
       "content": "Une grosse s'en va",
-      "important": false
+      "important": true
     },
     {
       "id": "2b9b",
       "content": "Toujours pas de coiffeur",
+      "important": true
+    },
+    {
+      "id": "5456",
+      "content": "Une app ou pas une app",
       "important": false
+    },
+    {
+      "id": "2b5c",
+      "content": "C'est pas toujours comme ça",
+      "important": true
     }
   ]
 }
